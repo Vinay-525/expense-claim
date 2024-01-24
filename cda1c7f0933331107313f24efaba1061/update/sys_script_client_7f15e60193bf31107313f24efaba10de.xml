@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>makeRequestedForToCurrentlyLoggedInUser</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+   var requestedFor = g_form.getValue('requested_for');
+   if(g_form.isNewRecord()) {
+		g_form.setValue('requested_for', g_user.userID);
+   } else {
+		g_form.setValue('requested_for', requestedFor);
+   }
+   g_form.setReadOnly('requested_for', true);
+   
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-16 08:49:30</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7f15e60193bf31107313f24efaba10de</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>makeRequestedForToCurrentlyLoggedInUser</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_update_name>sys_script_client_7f15e60193bf31107313f24efaba10de</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-16 09:02:22</sys_updated_on>
+        <table>x_1288340_expclaim_expense_claim</table>
+        <type>onLoad</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

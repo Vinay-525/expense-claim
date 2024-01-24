@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="payment_type" table="x_1288340_expclaim_expense_request" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>payment_type</element>
+            <name>x_1288340_expclaim_expense_request</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-01-15 16:58:58</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>payment_type</sys_name>
+            <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+            <sys_update_name>sys_choice_x_1288340_expclaim_expense_request_payment_type</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-01-15 16:58:58</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>payment_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Cash</label>
+            <language>en</language>
+            <name>x_1288340_expclaim_expense_request</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-01-18 07:49:08</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-01-18 07:49:12</sys_updated_on>
+            <value>cash</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>payment_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Credit/Debit Cards</label>
+            <language>en</language>
+            <name>x_1288340_expclaim_expense_request</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-01-18 07:49:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-01-18 07:49:32</sys_updated_on>
+            <value>credit_debit_cards</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>payment_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Out Of Pocket</label>
+            <language>en</language>
+            <name>x_1288340_expclaim_expense_request</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-01-16 11:30:01</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-01-16 11:30:09</sys_updated_on>
+            <value>out_of_pocket</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

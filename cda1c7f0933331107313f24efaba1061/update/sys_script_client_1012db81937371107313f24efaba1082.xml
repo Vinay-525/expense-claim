@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>changeSubmissionStatusToDraft</name>
+        <order/>
+        <script><![CDATA[function onSubmit() {
+   //Type appropriate comment here, and begin script below
+   var status = g_form.getValue('submission_status');
+   if(status == 'draft' || status == 'submitted') return;
+   g_form.setValue('submission_status', 'draft');
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-16 12:06:08</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>1012db81937371107313f24efaba1082</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>changeSubmissionStatusToDraft</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_update_name>sys_script_client_1012db81937371107313f24efaba1082</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-16 12:06:08</sys_updated_on>
+        <table>x_1288340_expclaim_expense_claim</table>
+        <type>onSubmit</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

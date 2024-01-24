@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="0f8f4249933f31107313f24efaba1005" label="Expense Claim " max_length="40" name="x_1288340_expclaim_expense_claim" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element choice="3" default="not_yet_requested" label="Approval" max_length="40" name="approval" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Approved" value="approved"/>
+                <element inactive_on_update="false" label="Not Yet Requested" value="not_yet_requested"/>
+                <element inactive_on_update="false" label="Rejected" value="rejected"/>
+                <element inactive_on_update="false" label="Requested" value="requested"/>
+            </choice>
+        </element>
+        <element label="Approval Journal" max_length="4000" name="approval_journal" type="journal"/>
+        <element label="Assigned To" max_length="32" name="assigned_to" reference="sys_user" type="reference"/>
+        <element label="Assignment Group" max_length="32" name="assignment_group" reference="sys_user_group" type="reference"/>
+        <element label="Business Purpose" mandatory="true" max_length="40" name="business_purpose" type="string"/>
+        <element label="Company" mandatory="true" max_length="32" name="company" reference="core_company" type="reference"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element choice="1" label="Policy" max_length="40" name="policy" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Global Expense Policy" value="global_expense_policy"/>
+                <element inactive_on_update="false" label="Marketing PCard Expense Policy" value="marketing_expense_policy"/>
+                <element inactive_on_update="false" label="NonMarketing PCard Expense Policy" value="nonmarketing_expense_policy"/>
+            </choice>
+        </element>
+        <element label="Report Date" mandatory="true" max_length="40" name="report_date" type="glide_date"/>
+        <element label="Report Name" mandatory="true" max_length="40" name="report_name" type="string"/>
+        <element label="Requested For" mandatory="true" max_length="32" name="requested_for" reference="sys_user" type="reference"/>
+        <element label="Short Description" max_length="40" name="short_description" type="string"/>
+        <element choice="3" default="pending" label="State" max_length="40" name="state" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Approved" value="approved"/>
+                <element inactive_on_update="false" label="Awaiting Approval" value="awaiting_approval"/>
+                <element inactive_on_update="false" label="Partially Approved" value="partially_approved"/>
+                <element inactive_on_update="false" label="Pending" value="pending"/>
+                <element inactive_on_update="false" label="Rejected" value="rejected"/>
+                <element inactive_on_update="false" label="Requested" value="requested"/>
+            </choice>
+        </element>
+        <element choice="3" default="initiated" label="Submission Status" max_length="40" name="submission_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="DRAFT" value="draft"/>
+                <element inactive_on_update="false" label="INITIATED" value="initiated"/>
+                <element inactive_on_update="false" label="SUBMITTED" value="submitted"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="assigned_to"/>
+        </index>
+        <index name="index2">
+            <element name="assignment_group"/>
+        </index>
+        <index name="index3">
+            <element name="company"/>
+        </index>
+    </element>
+</database>

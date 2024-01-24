@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist">
+    <sp_instance_vlist action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field>number</display_field>
+        <field_list/>
+        <filter table="x_1288340_expclaim_expense_claim">requested_for=javascript:gs.getUserID();<item endquery="false" field="requested_for" goto="false" newquery="false" operator="=" or="false" value="javascript:gs.getUserID();"/>
+        </filter>
+        <glyph/>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>1</order>
+        <order_by>sys_updated_on</order_by>
+        <order_direction>desc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">1fb901bd93f771107313f24efaba1033</sp_column>
+        <sp_page display_value="form">ed5f8ec347730200ba13a5554ee49046</sp_page>
+        <sp_widget display_value="Simple List">5b255672cb03020000f8d856634c9c28</sp_widget>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-18 10:03:39</sys_created_on>
+        <sys_id>05c985bd93f771107313f24efaba105a</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>My Expense Claims</sys_name>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_update_name>sp_instance_vlist_05c985bd93f771107313f24efaba105a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-23 11:21:17</sys_updated_on>
+        <table>x_1288340_expclaim_expense_claim</table>
+        <title>My Expense Claims</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"always_show": {
+		"value": "",
+		"displayValue": ""
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "",
+		"displayValue": ""
+	},
+	"secondary_fields": {
+		"value": "report_name,policy,business_purpose,sys_updated_on,state",
+		"displayValue": "report_name,policy,business_purpose,sys_updated_on,state"
+	},
+	"rounded_images": {
+		"value": "",
+		"displayValue": ""
+	},
+	"list_page": {
+		"value": "",
+		"displayValue": ""
+	},
+	"hide_footer": {
+		"value": "",
+		"displayValue": ""
+	},
+	"view": {
+		"value": "1c9434717d31311076daf29f52070d9f",
+		"displayValue": "Portal"
+	},
+	"disable_record_watcher": {
+		"value": "",
+		"displayValue": ""
+	},
+	"filter_acls": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]></widget_parameters>
+    </sp_instance_vlist>
+    <sys_translated_text action="delete_multiple" query="documentkey=05c985bd93f771107313f24efaba105a"/>
+</record_update>

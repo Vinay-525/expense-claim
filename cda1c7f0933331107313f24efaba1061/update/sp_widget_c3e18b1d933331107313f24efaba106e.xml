@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope,$rootScope, spModal, spUtil) {
+	/* widget controller */
+	var c = this;
+	
+	
+	c.steps = [
+		'Step 1: Create A Claim',
+		'Step 2: Add Expenses',
+		'Step 3: Send For Approval'
+	];
+  
+	c.data.paymentTypes = {
+		'out_of_pocket': 'Out Of Pocket',
+		'cash': 'Cash',
+		'credit_debit_cards': 'Credit/Debit Cards'
+	};
+	
+	c.data.receiptTypes = {
+		'no_receipt': 'No Receipt',
+		'receipt': 'Receipt'
+	};
+
+	c.initialize = function() {
+		c.data.showExpenseClaimForm = true;
+		c.data.showExpenseRequest = false;
+		c.data.showExpenseForm = false;
+		c.data.expCat = [];
+		c.data.currencies = [];
+		c.data.allExpenses = [];
+		c.data.claimId = null;
+		c.data.expenseClaim = {};
+		c.data.expenseRequest = {};
+		c.currentStep = 0;
+		c.data.isEditForm = false;
+	}
+
+	c.initialize();
+	
+	c.incrementStep = function() {
+		c.currentStep++;
+	}
+	
+	c.decrementStep = function() {
+		c.currentStep--;
+	}
+	
+	c.getExpCatMap = function(expCat) {
+		var expCatMap = {};
+		expCat.forEach(function(cat){
+			expCatMap[cat.id] = cat;
+		});
+		return expCatMap;
+	}
+	
+		c.setUTCTime = function(date) {
+		date.setHours(5,30,0);
+		return date;
+	}
+
+	c.saveExpenseClaim = function() {
+		console.log(c.data.expenseClaim);
+		console.log(c.data.expenseClaim.date);
+		console.log(new Date(c.data.expenseClaim.date));
+		c.server.get({
+			action: 'saveExpenseClaim',
+			reportName: c.data.expenseClaim.name,
+			reportDate: c.setUTCTime(c.data.expenseClaim.date),
+			businessPurpose: c.data.expenseClaim.businessPurpose,
+			shortDesc: c.data.expenseClaim.shortDescription,
+			policy: c.data.expenseClaim.policy
+		}).then(function(r) {
+			// When the promise is returned, emit the change
+			if(r.data.claimId) {
+				spUtil.addInfoMessage('Expense Claim Has Been Saved Successfully...');
+				c.data.claimId = r.data.claimId;
+				c.data.showExpenseRequest = true;
+				c.data.showExpenseClaimForm = false;
+				c.data.expCat = r.data.expCat;
+				c.data.expCatMap = c.getExpCatMap(c.data.expCat);
+				c.data.currencies = r.data.currencies;
+				console.log(r.data.expCat);
+				console.log(r.data.currencies);
+				c.incrementStep();
+			} else {
+				
+			}
+			c.data.expenseClaim = {};
+		});
+	}
+
+	c.setShowExpenseForm = function() {
+		c.data.showExpenseForm = true;
+	}
+	
+	c.closeForm = function() {
+		c.data.expenseRequest = {};
+		c.data.showExpenseForm = false;
+		c.data.isEditForm = false;
+	}
+	
+	c.setExpenseEditForm = function(expense) {
+		var editExpenseForm = {};
+		editExpenseForm.expenseCategory = expense.category;
+		editExpenseForm.currency = expense.currency;
+		editExpenseForm.amount = expense.amount;
+		editExpenseForm.city = expense.city;
+		editExpenseForm.txnDate = new Date(expense.transaction_date);
+		editExpenseForm.startDate = new Date(expense.start_date);
+		editExpenseForm.endDate = new Date(expense.end_date);
+		editExpenseForm.businessPurpose = expense.business_purpose;
+		editExpenseForm.shortDescription = expense.short_description;
+		editExpenseForm.receiptStatus = expense.receipt_status;
+		editExpenseForm.paymentType = expense.payment_type;
+		editExpenseForm.comment = expense.comment;
+		editExpenseForm.parent = expense.parent;
+		editExpenseForm.sysId = expense.sys_id;
+		return editExpenseForm;
+	}
+	
+	c.editExpenseForm = function(index) {
+		var expense = c.data.allExpenses[index];
+		c.data.expenseRequest = c.setExpenseEditForm(expense);
+		c.data.isEditForm = true;
+		c.setShowExpenseForm();
+		console.log('EDIT : ', expense );
+	}
+
+
+	c.saveExpense = function() {
+		console.log(c.data.expenseRequest);
+		var expRequest = c.data.expenseRequest;
+		if(expRequest.amount <= 0) {
+			spUtil.addErrorMessage('Please enter the valid amount');
+			return;
+		}
+		
+		
+		if(expRequest.startDate.getTime() > expRequest.endDate.getTime()) {
+			spUtil.addErrorMessage('Please enter the valid date range i.e. start and end dates');
+			return;
+		}
+		
+		var startDate = c.setUTCTime(expRequest.startDate);
+		var endDate =  c.setUTCTime(expRequest.endDate);
+		var txnDate = c.setUTCTime(expRequest.txnDate);
+		var actionType = (c.data.isEditForm) ? 'updateExpenseRequest' : 'saveExpenseRequest';
+	
+		c.server.get({
+			action: actionType,
+			category: expRequest.expenseCategory,
+			currency: expRequest.currency,
+			amount: expRequest.amount,
+			city: expRequest.city,
+			txnDate: txnDate,
+			startDate: startDate,
+			endDate: endDate,
+			businessPurpose: expRequest.businessPurpose,
+			shortDescription: expRequest.shortDescription,
+			receiptStatus: expRequest.receiptStatus,
+			paymentType: expRequest.paymentType,
+			comment: expRequest.comment,
+			claimId: c.data.claimId,
+			receipt: expRequest.receipt,
+			sysId: expRequest.sysId
+		}).then(function(r){
+			if(r.data.expenseId) {
+				if(c.data.isEditForm) {
+					spUtil.addInfoMessage('Expense Request Has Been Updated Successfully...');
+				} else {
+					spUtil.addInfoMessage('Expense Request Has Been Saved Successfully...');
+				}
+				c.data.isEditForm = false;
+				c.data.showExpenseForm = false;
+				c.data.allExpenses = r.data.allExpenses;
+				console.log(c.data.allExpenses);
+			} else {
+				
+			}
+			c.data.expenseRequest = {};
+		})
+	}
+	
+	c.goToReviewAndSubmit = function() {
+		c.incrementStep();
+	}
+	
+	c.goToExpenses = function() {
+		c.decrementStep();
+	}
+
+	c.submitExpenseClaim = function() {
+		c.server.get({
+			action: 'submitExpenseClaim',
+			claimId: c.data.claimId
+		}).then(function(r) {
+			if(r.data.claimId) {
+				c.incrementStep();
+				spUtil.addInfoMessage('Expense Claim Has Been Submitted Successfully...');
+				c.initialize();
+			}
+		})
+	}
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+  background:#f7f6f6;
+}
+
+.my-panel {
+  min-height: 400px;
+} 
+
+.heading {
+  font-style: bold;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+.required::after {
+  content: ' *';
+  color: red;
+  font-size: 20px;
+}
+
+.err-msg {
+  color: red;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 1rem;
+}
+
+.stepper {
+  display: flex;
+  margin: 10px;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+  position: relative;
+  
+  &amp;::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    content: "";
+    width: calc(100% - 20px);
+    background: #e7e7e7;
+  }
+}
+
+.stepper__item {
+  flex: 100%;
+  padding: 20px 20px 20px 40px;
+  background: linear-gradient(
+			-65deg,
+			#fff,
+			#fff 20px,
+			#fcfcfc 20px,
+			#fcfcfc 40px
+		);
+  margin: 0 0 0 -19px;
+  -webkit-clip-path: polygon(20px 50%, 0% 0%, calc(100% - 20px) 0%, 100% 50%, calc(100% - 20px) 100%, 0% 100%);
+  
+  &amp;.current {
+    background: #C1F2B0;
+    font-weight: bold;
+  }
+  
+  &amp;.complete {
+    background: #65B741;
+    color: #fff;
+  }
+  
+  &amp;:first-child {
+    padding: 20px;
+    -webkit-clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 50%, calc(100% - 20px) 100%, 0% 100%);
+  }
+  
+  &amp;:last-child {
+    -webkit-clip-path: polygon(20px 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+.exp-form {
+  min-height: inherit;
+}
+
+.exp-form-header {
+  	position: relative;
+    min-height: inherit;
+  	margin-bottom: 1rem;
+}
+
+.btn-temp {
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.exp-review {
+    position: relative;
+    min-height: inherit;
+}
+
+.btn-next {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.btn-add-expense {
+	margin-bottom: 1rem;
+}
+
+.panel-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>expense_claim</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Expense Claim</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	function getAllExpenseItems() {
+			var allExpenses = [];
+			var expGr = new GlideRecord('x_1288340_expclaim_expense_request');
+			expGr.addQuery('parent', input.claimId);
+		  expGr.orderByDesc('updated');
+			expGr.query();
+			
+			while(expGr.next()) {
+				var exp = {};
+				$sp.getRecordValues(
+					exp,
+					expGr,
+					"number,category,amount,currency,transaction_date,city,start_date,end_date,receipt_status,payment_type,business_purpose,short_description,comment,parent");
+				exp.sys_id = expGr.getUniqueValue();
+				allExpenses.push(exp);
+			}
+		return allExpenses;
+	}
+	
+	if(input) {
+		if(input.action == 'saveExpenseClaim') {
+			var claimGr = new GlideRecord('x_1288340_expclaim_expense_claim');
+			claimGr.initialize();
+			claimGr.report_name = input.reportName;
+			claimGr.report_date = input.reportDate;
+			claimGr.business_purpose = input.businessPurpose;
+			claimGr.short_description = input.shortDesc;
+			claimGr.policy = input.policy;
+			claimGr.requested_for = gs.getUserID();
+			claimGr.company = gs.getUser().getCompanyID();
+			claimGr.insert();
+			data.claimId = claimGr.getUniqueValue();
+			var expCat = [];
+			var expCatGr = new GlideRecord('x_1288340_expclaim_expense_category');
+			expCatGr.query();
+			while(expCatGr.next()) {
+				var cat = {
+					id: expCatGr.getUniqueValue(),
+					value: expCatGr.getValue('type'),
+					displayValue: expCatGr.getDisplayValue('type')
+				}
+				expCat.push(cat);
+			}
+			
+			var currencies = [];
+			var currGr = new GlideRecord('fx_currency');
+			currGr.query();
+			while(currGr.next()) {
+				currencies.push(currGr.getDisplayValue('code'));
+			}
+			data.expCat = expCat;
+			data.currencies = currencies;
+		}
+		
+		if(input.action == 'saveExpenseRequest') {
+			var expReqGr = new GlideRecord('x_1288340_expclaim_expense_request');
+			expReqGr.initialize();
+			expReqGr.category = input.category;
+			expReqGr.currency = input.currency;
+			expReqGr.amount = input.amount;
+			expReqGr.city = input.city;
+			expReqGr.transaction_date = input.txnDate;
+			expReqGr.start_date = input.startDate;
+			expReqGr.end_date = input.endDate;
+			expReqGr.business_purpose = input.businessPurpose;
+			expReqGr.short_description = input.shortDescription;
+			expReqGr.receipt_status = input.receiptStatus;
+			expReqGr.payment_type = input.paymentType;
+			expReqGr.comment = input.comment;
+			expReqGr.parent = input.claimId;
+			expReqGr.receipt = input.receipt;
+			expReqGr.insert();
+			data.expenseId = expReqGr.getUniqueValue();
+			
+			data.allExpenses = getAllExpenseItems();
+		}
+		
+		if(input.action == 'updateExpenseRequest') {
+			var expReqGr = new GlideRecord('x_1288340_expclaim_expense_request');
+			expReqGr.addQuery('sys_id', input.sysId);
+			expReqGr.query();
+			
+			if(expReqGr.next()) {
+				expReqGr.category = input.category;
+				expReqGr.currency = input.currency;
+				expReqGr.amount = input.amount;
+				expReqGr.city = input.city;
+				expReqGr.transaction_date = input.txnDate;
+				expReqGr.start_date = input.startDate;
+				expReqGr.end_date = input.endDate;
+				expReqGr.business_purpose = input.businessPurpose;
+				expReqGr.short_description = input.shortDescription;
+				expReqGr.receipt_status = input.receiptStatus;
+				expReqGr.payment_type = input.paymentType;
+				expReqGr.comment = input.comment;
+				expReqGr.parent = input.claimId;
+				expReqGr.receipt = input.receipt;
+				expReqGr.update();
+			}
+
+			data.expenseId = expReqGr.getUniqueValue();
+			data.allExpenses = getAllExpenseItems();
+		}
+		
+		if(input.action == 'submitExpenseClaim') {
+			var expClaimGr = new GlideRecord('x_1288340_expclaim_expense_claim');
+			expClaimGr.addQuery('sys_id', input.claimId);
+			expClaimGr.query();
+			
+			if(expClaimGr.next()) {
+				expClaimGr.state = 'requested';
+				expClaimGr.submission_status = 'submitted';
+				expClaimGr.update();
+			}
+			data.claimId = expClaimGr.getUniqueValue();
+		}
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-17 05:31:39</sys_created_on>
+        <sys_id>c3e18b1d933331107313f24efaba106e</sys_id>
+        <sys_mod_count>176</sys_mod_count>
+        <sys_name>Expense Claim</sys_name>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_update_name>sp_widget_c3e18b1d933331107313f24efaba106e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-24 06:39:07</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <h2 class="heading">
+    Concur Now
+  </h2>
+  <div class="panel-heading clearfix my-panel">
+    <ul class="stepper">
+      <li class="stepper__item" 
+          ng-class="{complete: $index < c.currentStep, current: $index == c.currentStep}"
+          ng-repeat="step in c.steps">
+        {{step}}
+      </li>
+    </ul>
+    <div ng-if="c.data.showExpenseClaimForm && c.currentStep == 0">
+      <h3>
+        Expense Claim
+      </h3>
+
+      <form name="expClaimForm" ng-submit="expClaimForm.$valid && c.saveExpenseClaim()">
+        <div class="err-msg" ng-if="expClaimForm.$invalid">
+          <p>
+            Please fill all the mandatory fields. (*)
+          </p>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6 mr-1">
+            <label class="control-label required" for="report-name">Report Name </label>
+            <input name="reportName" class="form-control" id="report-name" ng-model="c.data.expenseClaim.name" ng-model-options="{debounce: 10}" required/>
+          </div>
+
+          <div class="form-group col-sm-6 mr-1">
+            <label class="control-label required" for="report-date">Report Date </label>
+            <input type="date" class="form-control" id="report-date" ng-model="c.data.expenseClaim.date" ng-model-options="{debounce: 10}" required/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label required" for="business-purpose">Business Purpose</label>
+          <input class="form-control" id="business-purpose" ng-model="c.data.expenseClaim.businessPurpose" ng-model-options="{debounce: 10}" required/>
+        </div>
+
+
+        <div class="form-group">
+          <label class="control-label" for="short-description">Short Description</label>
+          <input class="form-control" id="short-description" ng-model="c.data.expenseClaim.shortDescription" ng-model-options="{debounce: 10}"/>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label required" for="policy">Policy</label>
+          <select class="form-control" id="policy" name="policy" ng-model="c.data.expenseClaim.policy" required>
+            <option value="global_expense_policy">Global Expense Policy</option>
+            <option value="marketing_expense_policy">Marketing PCard Expense Policy</option>
+            <option value="nonmarketing_expense_policy">NonMarketing PCard Expense Policy</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="col-md-11">
+            <button type="submit" class="btn btn-primary" ng-disabled="expClaimForm.$invalid">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div ng-if="c.data.showExpenseRequest && c.currentStep == 1" class="exp-form">
+      <h3>
+        Expense Request
+      </h3>
+      <div class="exp-form-header" ng-if="!c.data.showExpenseForm">
+        <button class="btn btn-primary btn-add-expense" ng-click="c.setShowExpenseForm()">
+          Add Expense
+        </button>
+
+        <div class="panel-group" id="accordion" ng-repeat="expense in c.data.allExpenses">
+          <div class="panel panel-default">
+            <div class="panel-heading panel-flex">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="{{'#' + expense.number}}">
+                  <span class="glyphicon glyphicon-menu-right text-success"></span> Expense {{'#' + $index}}            
+                </a>
+              </h4>
+              <button class="btn btn-warning" ng-click="c.editExpenseForm($index)">
+                Edit
+              </button>
+            </div>
+            <div id="{{expense.number}}" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h3>
+                  Category : {{c.data.expCatMap[expense.category]['displayValue']}}
+                </h3>
+                <h3>
+                  Amount : {{expense.amount}}
+                </h3>
+                <h3>
+                  Currency : {{expense.currency}}
+                </h3>
+                <h3>
+                  Transaction Date : {{expense.transaction_date}}
+                </h3>
+                <h3>
+                  Start Date : {{expense.start_date}}
+                </h3>
+                <h3>
+                  End Date : {{expense.end_date}}
+                </h3>
+                <h3>
+                  Payment Type : {{c.data.paymentTypes[expense.payment_type]}}
+                </h3>
+                <h3>
+                  Receipt Status : {{c.data.receiptTypes[expense.receipt_status]}}
+                </h3>
+                <h3>
+                  Business Purpose : {{expense.business_purpose}}
+                </h3>
+                <h3>
+                  Short Description : {{expense.short_description}}
+                </h3>
+                <h3>
+                  Comment : {{expense.comment}}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-temp" ng-if="!c.data.showExpenseForm">
+        <button class="btn btn-primary" ng-click="c.goToReviewAndSubmit()">
+        Next
+      </button>
+      </div>
+       
+
+
+
+      <div ng-if="c.data.showExpenseForm">
+        <form name="expenseForm" ng-submit="expenseForm.$valid && c.saveExpense()">
+          <div class="err-msg" ng-if="expenseForm.$invalid">
+            <p>
+              Please fill all the mandatory fields. (*)
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="expense-category">Expense Category</label>
+              <select class="form-control" id="expense-category" name="expense-category" ng-model="c.data.expenseRequest.expenseCategory" required>
+                <option value="{{category.id}}" ng-repeat="category in c.data.expCat">{{category.displayValue}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="currency">Currency</label>
+              <select class="form-control" id="currency" name="currency" ng-model="c.data.expenseRequest.currency" required>
+                <option value="{{currency}}" ng-repeat="currency in c.data.currencies">{{currency}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="amount">Amount</label>
+              <input type="integer" class="form-control" id="amount" ng-model="c.data.expenseRequest.amount" ng-model-options="{debounce: 10}" required/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="start-date">Start Date </label>
+              <input type="date" class="form-control" id="start-date" ng-model="c.data.expenseRequest.startDate" ng-model-options="{debounce: 10}" required/>
+            </div>
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="end-date">End Date </label>
+              <input type="date" class="form-control" id="end-date" ng-model="c.data.expenseRequest.endDate" ng-model-options="{debounce: 10}" required/>
+            </div>
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="transaction-date">Transaction Date</label>
+              <input type="date" class="form-control" id="transaction-date" ng-model="c.data.expenseRequest.txnDate" ng-model-options="{debounce: 10}" required/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="city">City</label>
+              <input type="text" class="form-control" id="city" ng-model="c.data.expenseRequest.city" ng-model-options="{debounce: 10}" required/>
+            </div>
+
+
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="receipt-status">Receipt Status</label>
+              <select class="form-control" id="receipt-status" name="receipt-status" ng-model="c.data.expenseRequest.receiptStatus" required>
+                <option value="no_receipt">No Receipt</option>
+                <option value="receipt">Receipt</option>
+              </select>
+            </div>
+
+            <div class="form-group col-sm-4 mr-1">
+              <label class="control-label required" for="payment-type">Payment Type</label>
+              <select class="form-control" id="payment-type" name="payment-type" ng-model="c.data.expenseRequest.paymentType" required>
+                <option value="out_of_pocket">Out Of Pocket</option>
+                <option value="cash">Cash</option>
+                <option value="credit_debit_cards">Credit/Debit Cards</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-6 mr-1">
+              <label class="control-label required" for="business-purpose">Business Purpose</label>
+              <input class="form-control" id="business-purpose" ng-model="c.data.expenseRequest.businessPurpose" ng-model-options="{debounce: 10}" required/>
+            </div>
+
+            <div class="form-group col-sm-6 mr-1">
+              <label for="short-description">Short Description</label>
+              <input class="form-control" id="short-description" ng-model="c.data.expenseRequest.shortDescription" ng-model-options="{debounce: 10}"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea class="form-control" id="comment" ng-model="c.data.expenseRequest.comment" ng-model-options="{debounce: 10}"/>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-11">
+              <button class="btn btn-primary" type="submit"  ng-disabled="expenseForm.$invalid">{{c.data.isEditForm ? 'Update' : 'Save'}}</button>
+              <input class="btn btn-danger" type="submit" ng-click="c.closeForm()" value="Close" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div ng-if="c.currentStep == 2" class="exp-review">
+      <h3>
+        Send For Approval
+      </h3>
+      <div class="btn-next">
+        <button class="btn btn-success" ng-click="c.goToExpenses()">
+          Back
+        </button> 
+        <button class="btn btn-success" ng-click="c.submitExpenseClaim()">
+          Send For Approval
+        </button> 
+      </div>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

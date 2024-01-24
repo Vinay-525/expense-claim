@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="f3d09774937331107313f24efaba10e8" label="Expense Category" max_length="40" name="x_1288340_expclaim_expense_category" type="collection">
+        <element label="Max Budget" mandatory="true" max_length="40" name="max_budget" type="integer"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element choice="3" display="true" label="Type" mandatory="true" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Food" value="food"/>
+                <element inactive_on_update="false" label="Fuel" value="fuel"/>
+                <element inactive_on_update="false" label="Health" value="health"/>
+                <element inactive_on_update="false" label="Medical" value="medical"/>
+                <element inactive_on_update="false" label="Miscellaneous" value="miscellaneous"/>
+            </choice>
+        </element>
+    </element>
+</database>

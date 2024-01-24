@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="DELETE">
+        <active>true</active>
+        <application display_value="Expense Claim ">4073964d933f31107313f24efaba101e</application>
+        <assessment/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>LIST</link_type>
+        <map_page/>
+        <mobile_title>Expense Claim s</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name>x_1288340_expclaim_expense_claim</name>
+        <order/>
+        <override_menu_roles>false</override_menu_roles>
+        <query/>
+        <report/>
+        <roles>x_1288340_expclaim.expense_claim_user</roles>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-16 07:30:05</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>5c73964d933f31107313f24efaba1021</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Expense Claim s</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_update_name>sys_app_module_5c73964d933f31107313f24efaba1021</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-16 07:30:05</sys_updated_on>
+        <timeline_page/>
+        <title>Expense Claim s</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</application>
+        <file_path/>
+        <instance_id>e67e6ef2db0a39504162684e13961994</instance_id>
+        <instance_name>dev194783</instance_name>
+        <name>sys_app_module_5c73964d933f31107313f24efaba1021</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module"><sys_app_module action="INSERT_OR_UPDATE"><active>true</active><application display_value="Expense Claim ">4073964d933f31107313f24efaba101e</application><assessment/><device_type/><filter/><hint/><homepage/><image/><link_type>LIST</link_type><map_page/><mobile_title>Expense Claim s</mobile_title><mobile_view_name>Mobile</mobile_view_name><name>x_1288340_expclaim_expense_claim</name><order/><override_menu_roles>false</override_menu_roles><query/><report/><roles>x_1288340_expclaim.expense_claim_user</roles><sys_class_name>sys_app_module</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-01-16 07:30:05</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>5c73964d933f31107313f24efaba1021</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Expense Claim s</sys_name><sys_overrides/><sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package><sys_policy/><sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope><sys_update_name>sys_app_module_5c73964d933f31107313f24efaba1021</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-01-16 07:30:05</sys_updated_on><timeline_page/><title>Expense Claim s</title><uncancelable>false</uncancelable><view_name/><window_name/></sys_app_module></record_update>]]></payload>
+        <payload_hash>-710669386</payload_hash>
+        <record_name>Expense Claim s</record_name>
+        <reverted_from/>
+        <source>c5a10374933331107313f24efaba1069</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-16 07:30:05</sys_created_on>
+        <sys_id>d073964d933f31107313f24efaba1024</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d112d68ba0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-16 07:30:05</sys_updated_on>
+        <type>Module</type>
+        <update_guid>1873964dfb3f3110c9c752d876916423</update_guid>
+        <update_guid_history>1873964dfb3f3110c9c752d876916423:-710669386</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Expense Claim s">b9e8de81937f31107313f24efaba1029</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-16 07:53:57</sys_created_on>
+        <sys_db_object display_value="" name="sys_app_module">sys_app_module</sys_db_object>
+        <sys_id>28d9c5cf34a641afb37f6bb1a2953071</sys_id>
+        <sys_metadata>5c73964d933f31107313f24efaba1021</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Expense Claim s</sys_name>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_scope_delete display_value="">083cb07e292d4278824d97224e272290</sys_scope_delete>
+        <sys_update_name>sys_app_module_5c73964d933f31107313f24efaba1021</sys_update_name>
+        <sys_update_version display_value="sys_app_module_5c73964d933f31107313f24efaba1021">d073964d933f31107313f24efaba1024</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-16 07:53:57</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

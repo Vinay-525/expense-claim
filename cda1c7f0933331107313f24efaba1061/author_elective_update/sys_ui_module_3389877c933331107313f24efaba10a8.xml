@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_module">
+    <sys_ui_module action="DELETE">
+        <active>true</active>
+        <application display_value="Expense Request">3b89877c933331107313f24efaba10a5</application>
+        <filter/>
+        <name>Expense Requests</name>
+        <order/>
+        <path/>
+        <path_relative_to_root>false</path_relative_to_root>
+        <roles>x_1288340_expclaim.expense_request_user</roles>
+        <sys_class_name>sys_ui_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-15 16:48:02</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>3389877c933331107313f24efaba10a8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Expense Requests</sys_name>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_update_name>sys_ui_module_3389877c933331107313f24efaba10a8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-15 16:48:02</sys_updated_on>
+        <table>x_1288340_expclaim_expense_request</table>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+    </sys_ui_module>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</application>
+        <file_path/>
+        <instance_id>e67e6ef2db0a39504162684e13961994</instance_id>
+        <instance_name>dev194783</instance_name>
+        <name>sys_ui_module_3389877c933331107313f24efaba10a8</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_module"><sys_ui_module action="INSERT_OR_UPDATE"><active>true</active><application display_value="Expense Request">3b89877c933331107313f24efaba10a5</application><filter/><name>Expense Requests</name><order/><path/><path_relative_to_root>false</path_relative_to_root><roles>x_1288340_expclaim.expense_request_user</roles><sys_class_name>sys_ui_module</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-01-15 16:48:02</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>3389877c933331107313f24efaba10a8</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Expense Requests</sys_name><sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package><sys_policy/><sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope><sys_update_name>sys_ui_module_3389877c933331107313f24efaba10a8</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-01-15 16:48:02</sys_updated_on><table>x_1288340_expclaim_expense_request</table><uncancelable>false</uncancelable><view_name/></sys_ui_module></record_update>]]></payload>
+        <payload_hash>-388974878</payload_hash>
+        <record_name>Expense Requests</record_name>
+        <reverted_from/>
+        <source>c5a10374933331107313f24efaba1069</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-15 16:48:02</sys_created_on>
+        <sys_id>7389877c933331107313f24efaba10aa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d0e05e0f90000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-15 16:48:02</sys_updated_on>
+        <type>Module</type>
+        <update_guid>b789877c5e33311054a90a50d79618a9</update_guid>
+        <update_guid_history>b789877c5e33311054a90a50d79618a9:-388974878</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-16 08:18:41</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_module">sys_ui_module</sys_db_object>
+        <sys_id>3fbb3766645a4e78a8a9e680ff5fca10</sys_id>
+        <sys_metadata>3389877c933331107313f24efaba10a8</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Expense Requests</sys_name>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_scope_delete display_value="">083cb07e292d4278824d97224e272290</sys_scope_delete>
+        <sys_update_name>sys_ui_module_3389877c933331107313f24efaba10a8</sys_update_name>
+        <sys_update_version display_value="sys_ui_module_3389877c933331107313f24efaba10a8">7389877c933331107313f24efaba10aa</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-16 08:18:41</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="DELETE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-15 16:19:21</sys_created_on>
+        <sys_id>eff247b4933331107313f24efaba102f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1288340_expclaim_expense_claim.x_1288340_expclaim.exp_claim</sys_name>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_security_acl display_value="x_1288340_expclaim_expense_claim">27f247b4933331107313f24efaba102d</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_eff247b4933331107313f24efaba102f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-15 16:19:21</sys_updated_on>
+        <sys_user_role display_value="x_1288340_expclaim.exp_claim" name="x_1288340_expclaim.exp_claim">59b10b34933331107313f24efaba10ce</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</application>
+        <file_path/>
+        <instance_id>e67e6ef2db0a39504162684e13961994</instance_id>
+        <instance_name>dev194783</instance_name>
+        <name>sys_security_acl_role_eff247b4933331107313f24efaba102f</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role"><sys_security_acl_role action="INSERT_OR_UPDATE"><sys_class_name>sys_security_acl_role</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-01-15 16:19:21</sys_created_on><sys_id>eff247b4933331107313f24efaba102f</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_1288340_expclaim_expense_claim.x_1288340_expclaim.exp_claim</sys_name><sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package><sys_policy/><sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope><sys_security_acl display_value="x_1288340_expclaim_expense_claim">27f247b4933331107313f24efaba102d</sys_security_acl><sys_update_name>sys_security_acl_role_eff247b4933331107313f24efaba102f</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-01-15 16:19:21</sys_updated_on><sys_user_role display_value="x_1288340_expclaim.exp_claim" name="x_1288340_expclaim.exp_claim">59b10b34933331107313f24efaba10ce</sys_user_role><transaction_id/></sys_security_acl_role></record_update>]]></payload>
+        <payload_hash>631124476</payload_hash>
+        <record_name>x_1288340_expclaim_expense_claim.x_1288340_expclaim.exp_claim</record_name>
+        <reverted_from/>
+        <source>c5a10374933331107313f24efaba1069</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-15 16:19:21</sys_created_on>
+        <sys_id>a7f247b4933331107313f24efaba1032</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18d0deb9ca70000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-15 16:19:21</sys_updated_on>
+        <type>Access Roles</type>
+        <update_guid>ebf247b496333110b991f23114262b31</update_guid>
+        <update_guid_history>ebf247b496333110b991f23114262b31:631124476</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="x_1288340_expclaim_expense_claim.x_1288340_expclaim.exp_claim">7253924d933f31107313f24efaba105e</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-01-16 07:29:43</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl_role">sys_security_acl_role</sys_db_object>
+        <sys_id>1f5061aa8be147aca3568358538f3f04</sys_id>
+        <sys_metadata>eff247b4933331107313f24efaba102f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1288340_expclaim_expense_claim.x_1288340_expclaim.exp_claim</sys_name>
+        <sys_package display_value="Expense Claim" source="x_1288340_expclaim">cda1c7f0933331107313f24efaba1061</sys_package>
+        <sys_parent display_value="">27f247b4933331107313f24efaba102d</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Expense Claim">cda1c7f0933331107313f24efaba1061</sys_scope>
+        <sys_scope_delete display_value="">083cb07e292d4278824d97224e272290</sys_scope_delete>
+        <sys_update_name>sys_security_acl_role_eff247b4933331107313f24efaba102f</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_role_eff247b4933331107313f24efaba102f">a7f247b4933331107313f24efaba1032</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-01-16 07:29:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
